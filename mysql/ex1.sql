@@ -60,7 +60,7 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`id`),
   KEY `fk_messages_users_idx` (`user_id`),
   CONSTRAINT `fk_messages_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,6 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-REPLACE INTO `messages` VALUES (1,'Hey Joe Mama!',1,'2016-07-05 18:28:59','2016-07-05 18:28:59',3),(2,'Hi lisa!',1,'2016-07-06 00:34:22','2016-07-06 00:34:22',4);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,9 +87,9 @@ CREATE TABLE `users` (
   `email` varchar(255) DEFAULT NULL,
   `pw_hash` varchar(255) DEFAULT NULL,
   `friends` int(1) DEFAULT '0',
+  `admin` int(1) DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `admin` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -101,7 +100,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-REPLACE INTO `users` VALUES (1,'Chris','Hamilton','babycakes','chris@home.com','$2b$12$lbdKHI6KAlG59g13sxExseoYiUGLLxPekLt9.VIhuY6tOY1d/b7cK',0,'2016-07-05 18:22:30','2016-07-05 18:22:30',1),(2,'Takako','Hamilton','mom','mom@home.com','$2b$12$a/Z8GRPuf2vVmq6TY5W.o.YNHXk0Jv5M137yyVXC0GchnbuWPz/42',0,'2016-07-05 18:24:49','2016-07-05 18:24:49',0),(3,'Joe','Hamilton','JoeMama','joe@home.com','$2b$12$zkm.z61/kYlz.dBCy.PNm.fpEqGVKtgHOpWekNqIwoGD0iTGLfKES',0,'2016-07-05 18:25:39','2016-07-05 18:25:39',0),(4,'Lisa`','Hamilton-Savary','Sista, Sista','lisa@home.com','$2b$12$45DcmycsFlxkpcl.vJAyLeaeoVMfQtIpyEBQmIg6giQUCQ.6iXLlm',0,'2016-07-05 18:26:13','2016-07-05 18:26:13',0),(5,'Fabian','Savary','Fabs','fabs@home.com','$2b$12$XQENQOjtKLAq0sdXux8ixuWwYikRZpXNZYVuXTQ3.Q41fm6qKglEu',0,'2016-07-05 18:26:36','2016-07-05 18:26:36',0),(6,'Kylian','Savary','Killy Kill','kylian@home.com','$2b$12$RefHYPvH35j3rEvaVOdxJe2pp58hXZrZJxfnt0SPlC7Y6gWJaFs1a',0,'2016-07-05 18:27:03','2016-07-05 18:27:03',0);
+REPLACE INTO `users` VALUES (1,'Santa','Clause','santa','santa@home.com','$2b$12$XTN0Zlvjsvq3ZAjssZGfo.epa3UhuTnpzSnQdpU/yU83lNi06Nx0G',0,0,'2016-07-06 03:41:38','2016-07-06 03:41:38'),(2,'Chris','Hamilton','babycakes','chris@home.com','$2b$12$1RzHgZWLhIraTjYqAQghv.PEu737LlEN4qdQHOoypmkWHHRN5hTjO',0,1,'2016-07-06 03:42:49','2016-07-06 03:42:49'),(3,'Bill','Cosby','Mr. Bill','bill@home.com','$2b$12$cE8kEITQ.DGR1W2ZSiXz4.egOVrTppmks.ccGJax1nXPMoQ0zkyPe',0,0,'2016-07-06 03:52:44','2016-07-06 03:52:44'),(4,'Morgan','Freeman','Moe','morgan@home.com','$2b$12$0XpMrP5IvhDlUA0ew6.2pexEmhUwg2Cs6rWZq3F4xuTcL8sRbLtem',0,0,'2016-07-06 03:53:32','2016-07-06 03:53:32'),(5,'Richard','Ramirez','Nightstalker','richard@home.com','$2b$12$EUj/En.VtfSeJjh2jqNSQOeBN4e1pAM.jYxabcsSyQj/RkyeQf06e',0,0,'2016-07-06 03:54:12','2016-07-06 03:54:12'),(6,'Barack','Obama','Mr. President','barack@home.com','$2b$12$5U6nKHXD3a5qiHqhI2I50.BN3iN6yRWLEAchOBNeGZf2pOtkKNgT.',0,0,'2016-07-06 03:54:44','2016-07-06 03:54:44'),(7,'Brittney','Spears','Bae','brittney@home.com','$2b$12$tbGn9GZDx6tmQErUMGP1uOpZn5Fcb45CiEAWyptfFQikGDP12Kd9.',0,0,'2016-07-06 03:55:43','2016-07-06 03:55:43'),(8,'Christina','Hendricks','Hottie','christina@home.com','$2b$12$ukaqjFSGAUn6MD4fQv4VNuvNSt4VBlC2soX0S82u9OtTW0osZ9Hgq',0,0,'2016-07-06 03:56:23','2016-07-06 03:56:23');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -114,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-06  0:37:38
+-- Dump completed on 2016-07-06  3:57:58
