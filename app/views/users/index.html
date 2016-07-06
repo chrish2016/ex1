@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+  <div id="wrapper">
+    <header>
+      <form action="/users" method="get"><input type="submit" value="home"></form>
+      <form action="/edit" method="get"><input type="submit" value="edit profile"></form>
+      <form action="/logout" method="get"><input type="submit" value="logout"></form>
+      <div class="container">
+        <h1>Welcome {{session['user']['alias']}}!</h1>
+        <h4>Friends:</h4>
+        {% for friend in friends %}
+          {{ friends['id'] }}
+        <form action="/users/{{ user['id'] }}/add" method="POST">
+            <input type="submit" value="add">
+        </form>
+        {% endfor %}
+        <h4>Soon to be friends:</h4>
+        {% for user in users %}
+        <form action="/users/{{ user['id'] }}/remove" method="POST">
+            <input type="submit" value="remove">
+        </form>
+        {% endfor %}
+      </div>
+    </header>
+    <section>
+      <article>
+      </article>
+      <aside>
+        <div class="users_list">
+          <h2>Members</h2>
+          {% for user in users %}
+          <h3><a href="/users/{{user['id']}}">{{user['alias']}}</a></h3>
+          <form action="/friends/{{ user['id'] }}/add" method="POST">
+              <input type="submit" value="add">
+          </form>
+              {% if session['user']['admin'] == 1 %}
+              <a href="/users/{{user['id']}}/edit">edit</a>
+              <form action="/users/{{ user['id'] }}/delete" method="POST">
+                  <input type="submit" value="delete">
+              </form>
+              <hr>
+              {% endif %}
+          {% endfor %}
+        </div>
+      </aside>
+      <div class="container">
+        <form action="/messages" method="post">
+          <input type="hidden" name="user_id">
+            <textarea name="message" rows="5" cols="50"></textarea></br>
+          <input type="submit" value="Post a message!">
+        </form>
+      </div>
+    </section>
+    <footer>
+      <small>Logged in as: {{session['user']}}</small>
+    </footer>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="regform">
+      <form action="/register"  method="post">
+        <input type="text" name="first_name" placeholder="first name:">
+        <input type="text" name="last_name" placeholder="last name:">
+        <input type="text" name="alias" placeholder="pick an alias to use:">
+        <input type="email" name="email" placeholder="please use a valid email address:">
+        <input type="password" name="password" placeholder="please choose an 8 character password:">
+        <input type="password" name="password_confirm" placeholder="please reconfirm password:">
+        <input type="submit" value="REGISTER!">
+      </form>
+    </div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <h4 style="line-height:5px;display:inline-block;"><p class='error'>{{message}}</p></h5>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="loginform">
+      <form action="/login"  method="post">
+        <input type="email" name="email" placeholder="please enter email address:">
+        <input type="password" name="password" placeholder="please enter password here:">
+        <input type="submit" value="LOGIN!">
+      </form>
+    </div>
+  </body>
+</html>

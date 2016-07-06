@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <form action="/users" method="get">
+      <input type="submit" value="home">
+    </form>
+    <form action="/logout" method="get">
+      <input type="submit" value="logout">
+    </form>
+      <form action="/users/{{user['id']}}/edit" method='edit'>
+        First Name<input type="text" name="first_name" value="{{user['first_name']}}">
+        Last Name<input type="text" name="last_name" value="{{user['last_name']}}"> <!--prepopulated information-->
+        Alias<input type="text" name="alias" value="{{user['alias']}}">
+        Email<input type="email" name="email" value="{{user['email']}}"> <!--prepopulated information-->
+        <select name="admin" value="{{user['admin']}}">
+          <option value='0'>Normal</option>
+          <option value='1'>Admin</option>
+        </select>
+        <input type="submit" value="Submit Edits">
+      </form>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+  <div id="wrapper">
+    <header>
+      <form action="/users" method="get"><input type="submit" value="home"></form>
+      <form action="/logout" method="get"><input type="submit" value="logout"></form>
+      <h1>Welcome to {{user['alias']}}'s page!</h1>
+      <h3>email: {{user['email']}}
+    </header>
+    <section>
+      <article>
+        <h2>Messages:</h2>
+        {% for message in messages %}
+          <p>{{message['author_id']}} writes:<small>{{message['message']}}</small></p>
+        {% endfor %}
+      </article>
+      <aside>
+        <div class="users_list">
+          <h3>Members</h3>
+          {% for user in users %}
+          <h4><a href="/users/{{user['id']}}">{{user['alias']}}</a></h4>
+              {% if session['user']['admin'] == 1 %}
+              <a href="/users/{{user['id']}}/edit">edit</a>
+              <form action="/users/{{ user['id'] }}/delete" method="POST">
+                  <input type="submit" value="delete">
+              </form>
+              <hr>
+              {% endif %}
+          {% endfor %}
+        </div>
+      </aside>
+      <div class="container">
+        <form action="/messages" method='post'>
+          <input type="hidden" name="user_id" value="{{user['id']}}">
+          <textarea name="message" rows="8" cols="40"></textarea>
+          <input type="submit" value="Leave a message for {{user['alias']}}">
+        </form>
+      </div>
+    </section>
+    <footer>
+    </footer>
+  </div>
+  </body>
+</html>
